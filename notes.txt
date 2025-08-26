@@ -1,0 +1,2 @@
+Errors Face --------> 
+    1. In the Registration page, backend API error message displaying 
