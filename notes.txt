@@ -1,2 +1,17 @@
 Errors Face --------> 
     1. In the Registration page, backend API error message displaying 
+    2. In the AddStory component, during story creation
+        when the function to make ApiCall is name onSubmit, it didnt work. 
+        But when it was name handleStoryAdd, it worked. why? 
+
+
+
+Notes ----------->
+
+    1. Work on DRF serializer : 
+        Story List serializer   
+            Show Author's name, and story's images
+    
+    
+    2. If a state variable is supposed to store an array-> then 
+        the initial value of the state variable must be an empty array. not null.  

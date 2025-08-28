@@ -4,6 +4,7 @@ import useAuthContext from '../hooks/useAuthContext';
 import ErrorAlert from '../components/ErrorAlert';
 import SuccessAlert from '../components/SuccessAlert';
 import FieldErrorAlert from '../components/FieldErrorAlert';
+import { Link } from 'react-router';
 
 const Registration = () => {
     const {register, handleSubmit, formState:{errors}, watch} = useForm();
@@ -101,6 +102,9 @@ const Registration = () => {
                     {errors.confirm_password && (<FieldErrorAlert message={errors.confirm_password.message}/>)}
                 </div>
                 <button type='submit' className='btn btn-primary w-full'>Create Account</button>
+                <div>
+                    Already Have an account <Link to={"/login"}>Sign In</Link>
+                </div>
             </form>
         </div>
     );

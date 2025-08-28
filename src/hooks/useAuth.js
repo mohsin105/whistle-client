@@ -41,8 +41,10 @@ const useAuth = () => {
     };
     
     
-    const signOutUser=()=>{
-
+    const logoutUser=()=>{
+        setUser(null);
+        setAuthToken(null);
+        localStorage.removeItem("authToken");
     };
     
     //fetching current user function
@@ -79,7 +81,7 @@ const useAuth = () => {
     }
     
     
-    return {user,registerUser, loginUser, signOutUser,errorMessage, changePassword, updateUserProfile };
+    return {user,registerUser, loginUser, logoutUser,errorMessage, changePassword, updateUserProfile };
 };
 
 export default useAuth;

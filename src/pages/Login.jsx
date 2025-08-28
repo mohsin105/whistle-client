@@ -1,23 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import FieldErrorAlert from '../components/FieldErrorAlert';
 import useAuthContext from '../hooks/useAuthContext';
-import { useNavigate } from 'react-router';
+import { NavLink, useNavigate } from 'react-router';
 import ErrorAlert from '../components/ErrorAlert';
 
 
 const Login = () => {
     const {register,handleSubmit, formState:{errors}} = useForm();
     const {loginUser,errorMessage} = useAuthContext();
+    const [loading, setLoading] = useState(false);
     const navigate = useNavigate();
 
     const onSubmit = async(data) =>{
+        setLoading(true);
         try {
             const response = await loginUser(data);
             console.log(response);
             if (response.success) navigate("/");
         } catch (error) {
             console.log("Login Error ",error);
+        }finally{
+            setLoading(false);
         }
     };
 
@@ -48,7 +52,12 @@ const Login = () => {
                     />
                     {errors.password && (<FieldErrorAlert message={errors.password.message}/>)}
                 </div>
-                <button type='submit' className='btn btn-primary w-full'>Sign In</button>
+                <button type='submit' className='btn btn-primary w-full' disabled={loading}>
+                    {loading? "Signing In..." : "Sign In"}
+                </button>
+                <div>
+                    No Account yet? <NavLink to={"/register"}>Create New Account</NavLink>
+                </div>
             </form>
         </div>
     );
