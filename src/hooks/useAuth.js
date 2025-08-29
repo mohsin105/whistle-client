@@ -12,6 +12,18 @@ const useAuth = () => {
     }
     const [authToken, setAuthToken] = useState(getToken());
     
+    //fetching current user function
+    const fetchCurrentUser=async()=>{
+        try {
+            const response = await authApiClient.get("/auth/users/me");
+            console.log(response.data);
+            setUser(response.data);
+        } catch (error) {
+            console.log(error);
+            handleApiError(error);
+        }
+    };
+    
     useEffect(()=>{
         if(authToken)fetchCurrentUser();
     },[authToken]);
@@ -47,20 +59,11 @@ const useAuth = () => {
         localStorage.removeItem("authToken");
     };
     
-    //fetching current user function
-    const fetchCurrentUser=async()=>{
-        try {
-            const response = await authApiClient.get("/auth/users/me");
-            console.log(response.data);
-            setUser(response.data);
-        } catch (error) {
-            console.log(error);
-            handleApiError(error);
-        }
-    };
+    
 
     const handleApiError = (error, defaultMessage="Something went wrong") => {
         console.log(error);
+        setErrorMessage("");
         //field specific error
         if(error.response && error.response.data){
             const errorMsg=Object.values(error.response.data).flat().join("\n")
@@ -72,12 +75,22 @@ const useAuth = () => {
         return{success:false, message:defaultMessage}
     };
 
-    const changePassword =async()=>{
-
+    const changePassword =async(userData)=>{
+        setErrorMessage("");
+        try {
+            await authApiClient.post("/auth/users/set_password/",userData)
+        } catch (error) {
+            console.log(error.response.data);
+        }
     }
 
-    const updateUserProfile = async() => {
-
+    const updateUserProfile = async(userData) => {
+        setErrorMessage("");
+        try {
+            await authApiClient.put("/auth/users/me/", userData);
+        } catch (error) {
+            handleApiError(error);
+        }
     }
     
     

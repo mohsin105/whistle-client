@@ -7,6 +7,7 @@ import Login from '../pages/Login';
 import ActivateAccount from '../components/Registration/ActivateAccount';
 import MainLayout from '../layouts/MainLayout';
 import AddStory from '../pages/AddStory';
+import Profile from '../pages/Profile';
 
 
 const AppRoutes = () => {
@@ -19,6 +20,7 @@ const AppRoutes = () => {
                 <Route path="login" element={<Login/>}></Route>
                 <Route path='activate/:uid/:token' element={<ActivateAccount/>}></Route>
                 <Route path='stories/add' element={<AddStory/>}/>
+                <Route path='profile' element={<Profile/>}/>
             </Route>
         </Routes>
     );
