@@ -13,11 +13,11 @@ const CommentSection = ({storyId}) => {
     const [editingId, setEditingId] = useState(null);
 
     useEffect(()=>{
-        fetchReviews();
+        fetchComments();
     },[]);
 
     //Read Operation
-    const fetchReviews = async()=>{
+    const fetchComments = async()=>{
         setLoading(true);
         try {
             const response = await apiClient.get(`/stories/${storyId}/comments/`);
@@ -30,24 +30,35 @@ const CommentSection = ({storyId}) => {
         }
     };
     //Update Operation
-    const handleUpdateReview =()=>{
-
+    const handleUpdateComment =async(commentId)=>{
+        try {
+            await authApiClient.put(`/stories/${storyId}/comments/${commentId}/`, editComment);
+            setEditingId(null);
+            fetchComments();
+        } catch (error) {
+            console.log("Error Updating Comment",error);
+        }
     };
-
+    //Create Operation: -> 
     const onSubmit= async(data)=>{
         console.log(data);
         try {
             const response = await authApiClient.post(`/stories/${storyId}/comments/`,data);
             console.log(response);
-            fetchReviews();
+            fetchComments();
         } catch (error) {
             console.log("Error submitting comment", error);
         }
     };
 
     //Delete Operation
-    const handleDeleteReview =()=> {
-
+    const handleDeleteComment = async(commentId)=> {
+        try {
+            await authApiClient.delete(`/stories/${storyId}/comments/${commentId}/`);
+            fetchComments();
+        } catch (error) {
+            console.log("Error Deleting Comment: ",error)
+        }
     };
     return (
         <div>
@@ -59,7 +70,14 @@ const CommentSection = ({storyId}) => {
                 ):(
 
                     <CommentList 
-                        comments={comments}>
+                        comments={comments}
+                        user={user}
+                        editingId={editingId}
+                        setEditingId={setEditingId}
+                        editComment={editComment}
+                        setEditComment={setEditComment}
+                        handleUpdateComment={handleUpdateComment}
+                        handleDeleteComment={handleDeleteComment}>
                     </CommentList>
                 )}
             </div>

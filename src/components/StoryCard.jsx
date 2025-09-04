@@ -1,16 +1,17 @@
-import React, { useEffect } from 'react';
+// import React, { useEffect } from 'react';
 import { NavLink } from 'react-router';
 import defaultImage from '../assets/default_story.jpg'
 
 const StoryCard = ({story}) => {
-    useEffect(()=>{
-        console.log(story);
-    },[]);
+    // useEffect(()=>{
+    //     console.log(story);
+    // },[]);
     return (
         <div className='flex justify-center bg-amber-50'>
             <NavLink to={`/${story.id}`}>
-                <div className="card bg-base-100 w-96 shadow-xl text-center my-10 p-2">
+                <div className="card bg-base-100 w-96 shadow-xl text-left my-10 p-2">
                     <div className="card-body">
+                        <p>{story.author.full_name}</p>
                         <h2 className="card-title">{story.title}</h2>
                         <p>{story.content}</p>
                     </div>

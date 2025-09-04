@@ -1,8 +1,25 @@
-Errors Face --------> 
+Errors Faced --------> 
     1. In the Registration page, backend API error message displaying 
+    
     2. In the AddStory component, during story creation
         when the function to make ApiCall is name onSubmit, it didnt work. 
         But when it was name handleStoryAdd, it worked. why? 
+    
+    3. In the StoryDetails component, why do i need optional chaining 
+        for accessing nested serializer attribute. 
+
+        Even though i didnt need it for Story List (Newsfeed) page. 
+
+        3.2 => 
+        and in StoryDetails component,  direct useffect was effective, but , 
+        separate async await function , and then calling that function 
+        inside useffect was not effective, why?
+    
+    4. Pagination Problem -----> 
+        - 29 stories. hence 3 pages. 
+        - but when clicked on 3rd button twice, the totapages becomes 4. 
+        Why!!!
+
 
 
 

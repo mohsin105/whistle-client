@@ -8,6 +8,8 @@ import ActivateAccount from '../components/Registration/ActivateAccount';
 import MainLayout from '../layouts/MainLayout';
 import AddStory from '../pages/AddStory';
 import Profile from '../pages/Profile';
+import PrivateRoute from '../components/PrivateRoute';
+import DashboardLayout from '../layouts/DashboardLayout';
 
 
 const AppRoutes = () => {
@@ -19,8 +21,17 @@ const AppRoutes = () => {
                 <Route path="register" element={<Registration/>}></Route>
                 <Route path="login" element={<Login/>}></Route>
                 <Route path='activate/:uid/:token' element={<ActivateAccount/>}></Route>
-                <Route path='stories/add' element={<AddStory/>}/>
+                
+            </Route>
+            {/* Private Route  */}
+            <Route path='dashboard' element={
+                <PrivateRoute>
+                    <DashboardLayout/>
+                </PrivateRoute>
+            }>
                 <Route path='profile' element={<Profile/>}/>
+                <Route path='stories/add' element={<AddStory/>}/>
+
             </Route>
         </Routes>
     );
