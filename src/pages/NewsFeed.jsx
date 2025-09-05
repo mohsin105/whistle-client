@@ -15,7 +15,7 @@ const NewsFeed = () => {
     const [totalPages, setTotalPages] = useState(null);
     const [searchQuery, setSearchQuery] = useState("");
     const [sortOrder, setSortOrder] = useState("");
-    const [filterQuery, setFilterQuery] = useState("");
+    // const [filterQuery, setFilterQuery] = useState("");
     useEffect(()=>{
         fetchStories();
     },[currentPage]);
@@ -41,7 +41,12 @@ const NewsFeed = () => {
         <div className='w-1/2 mx-auto text-center'>
             This is NewsFeed
             <div>
-                <FilterSection/>
+                <FilterSection
+                      searchQuery={searchQuery}
+                      sortOrder={sortOrder}  
+                      handleSearchChange={setSearchQuery}
+                      handleSorting={setSortOrder}
+                />
             </div>
             <div className='flex justify-center'>
                 <div className="card w-3/4 bg-base-100 card-sm shadow-sm">

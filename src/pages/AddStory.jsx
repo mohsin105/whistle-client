@@ -47,60 +47,68 @@ const AddStory = () => {
     };
 
     return (
-        <div>
-            <h1>Create New Story</h1>
-            {(!storyId)? (
-                <form onSubmit={handleSubmit(handleStoryAdd)}>
-                    <div>
-                        <label htmlFor="">Title</label>
-                        <input 
-                            {...register("title",{
-                                required:"Title is required!!"
-                            })}
-                            type="text" 
-                        />
-                        {errors.title && (<FieldErrorAlert message={errors.title.message}/>)}
-                    </div>
-                    <div>
-                        <label htmlFor="">Content</label>
-                        <input 
-                            {...register("content",{
-                                required:"Content is required!!!"
-                            })}
-                            type="text" 
-                        />
-                        {errors.content && (<FieldErrorAlert message={errors.content.message}/>)}
-                    </div>
-                    <button 
-                        type='submit'
-                        className="btn btn-soft btn-primary">
-                        Post Story
-                    </button>
-                </form>
-            ) : (
-                // Image Upload 
-                <div>
-                    <input 
-                        type="file"
-                        multiple
-                        accept='image/*'
-                        className="file-input file-input-bordered w-full"
-                        onChange={handleImageChange} 
-                    />
-                    {previewImages.length>0 && (
-                        <div className='size-48 flex gap-2'>
-                            {previewImages.map((src,indx)=>
-                                <img src={src} alt="preview" key={indx}/>
-                            )}
+        <div className='w-2/3 mx-auto '>
+            <h1 className='text-center'>Create New Story</h1>
+            <div className='flex justify-center'>
+
+                {(!storyId)? (
+                    <form 
+                        onSubmit={handleSubmit(handleStoryAdd)}
+                        className='space-y-2 w-full bg-gray-50 text-center'
+                    >
+                        <div className='space-x-2'>
+                            <label htmlFor="">Title</label>
+                            <input 
+                                {...register("title",{
+                                    required:"Title is required!!"
+                                })}
+                                type="text"
+                                className='input input-primary ' 
+                            />
+                            {errors.title && (<FieldErrorAlert message={errors.title.message}/>)}
                         </div>
-                    )}
-                    <button 
-                        disabled={isLoading}
-                        onClick={handleUploadImage}
-                        >Upload Image
-                    </button>
-                </div>
-            )}
+                        <div className='space-x-2'>
+                            <label htmlFor="">Content</label>
+                            <input 
+                                {...register("content",{
+                                    required:"Content is required!!!"
+                                })}
+                                type="textarea"
+                                className='textarea input input-primary' 
+                            />
+                            {errors.content && (<FieldErrorAlert message={errors.content.message}/>)}
+                        </div>
+                        <button 
+                            type='submit'
+                            className="btn btn-soft btn-primary">
+                            Post Story
+                        </button>
+                    </form>
+                ) : (
+                    // Image Upload 
+                    <div>
+                        <input 
+                            type="file"
+                            multiple
+                            accept='image/*'
+                            className="file-input file-input-bordered w-full"
+                            onChange={handleImageChange} 
+                        />
+                        {previewImages.length>0 && (
+                            <div className='size-48 flex gap-2'>
+                                {previewImages.map((src,indx)=>
+                                    <img src={src} alt="preview" key={indx}/>
+                                )}
+                            </div>
+                        )}
+                        <button 
+                            disabled={isLoading}
+                            onClick={handleUploadImage}
+                            >Upload Image
+                        </button>
+                    </div>
+                )}
+            </div>
         </div>
     );
 };

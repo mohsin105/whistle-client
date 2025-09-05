@@ -2,13 +2,13 @@ import React from 'react';
 import EditCommentForm from './EditCommentForm';
 
 const CommentCard = ({comment,user,isEditing,editingId, editComment,setEditComment,onEditClick,onCancelEditClick,onSaveEditClick,onDeleteClick}) => {
-    console.log("Main Comment: ",comment);
-    console.log("Editing id: ",editingId )
-    console.log("Is editing: ",isEditing);
-    console.log("Edit Comment: ",editComment);
+    // console.log("Main Comment: ",comment);
+    // console.log("Editing id: ",editingId )
+    // console.log("Is editing: ",isEditing);
+    // console.log("Edit Comment: ",editComment);
     return (
         <div>
-            Comment Card
+            {/* Comment Card */}
             {!isEditing? (
                 <div className="card w-11/12 bg-base-100 card-sm shadow-sm border-gray-400 mx-auto">
                     <div className="card-body">

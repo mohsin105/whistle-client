@@ -10,6 +10,7 @@ import AddStory from '../pages/AddStory';
 import Profile from '../pages/Profile';
 import PrivateRoute from '../components/PrivateRoute';
 import DashboardLayout from '../layouts/DashboardLayout';
+import UpdateStory from '../pages/UpdateStory';
 
 
 const AppRoutes = () => {
@@ -31,7 +32,7 @@ const AppRoutes = () => {
             }>
                 <Route path='profile' element={<Profile/>}/>
                 <Route path='stories/add' element={<AddStory/>}/>
-
+                <Route path='stories/:storyId/update' element={<UpdateStory/>}/>
             </Route>
         </Routes>
     );

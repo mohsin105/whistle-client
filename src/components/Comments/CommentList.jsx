@@ -5,7 +5,7 @@ const CommentList = ({comments, user,editingId,setEditingId, editComment, setEdi
     
     return (
         <div>
-            Comment List
+            {/* Comment List */}
             {comments.map(comment=>(
                 <CommentCard 
                     key={comment.id} 

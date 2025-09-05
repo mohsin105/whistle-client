@@ -35,12 +35,20 @@ const Profile = () => {
     return (
         <div>
             <h1>Profile Information</h1>
-            <form onSubmit={handleSubmit(onSubmit)}>
+            <div className='card card-body w-2/3 mx-auto'>
+                <div className='flex justify-center'>
 
-                <ProfileForm register={register} errors={errors} isEditing={isEditing}/>
+                    <form 
+                        onSubmit={handleSubmit(onSubmit)}
+                        className='space-y-4 '
+                    >
 
-                <ProfileButton isEditing={isEditing} isSubmitting={isSubmitting} setIsEditing={setIsEditing}/>
-            </form>
+                        <ProfileForm register={register} errors={errors} isEditing={isEditing}/>
+
+                        <ProfileButton isEditing={isEditing} isSubmitting={isSubmitting} setIsEditing={setIsEditing}/>
+                    </form>
+                </div>
+            </div>
         </div>
     );
 };

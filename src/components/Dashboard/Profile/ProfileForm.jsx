@@ -12,7 +12,7 @@ const ProfileForm = ({register, errors, isEditing}) => {
                     })}
                     type="text"
                     disabled={!isEditing}
-                    className='' 
+                    className='input input-accent' 
                 />
                 {errors.first_name && (<FieldErrorAlert message={errors.first_name.message}/>)}
             </div>
@@ -22,7 +22,7 @@ const ProfileForm = ({register, errors, isEditing}) => {
                     {...register("last_name")}
                     type="text"
                     disabled={!isEditing}
-                    className='input input-bordered bg-base-200' 
+                    className='input input-bordered ' 
                 />
             </div>
             
@@ -32,7 +32,7 @@ const ProfileForm = ({register, errors, isEditing}) => {
                     {...register('email')} 
                     type="text"
                     disabled={true}
-                    className='' 
+                    className='input input-primary' 
                 />
             </div>
             <div>
@@ -50,7 +50,7 @@ const ProfileForm = ({register, errors, isEditing}) => {
                     {...register("location")} 
                     type="text"
                     disabled={!isEditing}
-                    className='' 
+                    className='input input-primary' 
                 />
             </div>
             <div>
@@ -59,7 +59,7 @@ const ProfileForm = ({register, errors, isEditing}) => {
                     {...register("phone_number")}
                     type="text"
                     disabled={!isEditing}
-                    className='' 
+                    className='input input-primary' 
                 />
             </div>
             

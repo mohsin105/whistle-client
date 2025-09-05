@@ -24,88 +24,106 @@ const Registration = () => {
         }
     }
     return (
-        <div>
-            <div className='text-4xl font-bold text-center'>Register Here</div>
-            
-            {errorMessage && <ErrorAlert errorMessage={errorMessage}/>}
-            {successMessage && <SuccessAlert successMessage={successMessage}/>}
-            
-            <form onSubmit={handleSubmit(onSubmit)}>
+        <div className='w-5/6 mx-auto p-4'>
+            <div className='card'>
+                <div className='text-4xl font-bold text-center'>Register Here</div>
                 <div>
-                    <label htmlFor="">First Name</label>
-                    <input 
-                        {...register("first_name")}
-                        type="text" 
-                    />
+                    {errorMessage && <ErrorAlert errorMessage={errorMessage}/>}
+                    {successMessage && <SuccessAlert successMessage={successMessage}/>}
                 </div>
-                <div>
-                    <label htmlFor="">Last Name</label>
-                    <input 
-                        {...register("last_name")}
-                        type="text" 
-                    />
+                <div className='flex justify-center'>
+
+                    <form 
+                        onSubmit={handleSubmit(onSubmit)}
+                        className=''>
+                        <div>
+                            <label htmlFor="">First Name</label>
+                            <input 
+                                {...register("first_name")}
+                                type="text"
+                                className='input' 
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="">Last Name</label>
+                            <input 
+                                {...register("last_name")}
+                                type="text"
+                                className='input input-primary' 
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="">Email</label>
+                            <input 
+                                {...register("email",{
+                                    required:"Email Field is Required!"
+                                })}
+                                type="text" 
+                                className='input input-primary'
+                            />
+                            {errors.email && (<FieldErrorAlert message={errors.email.message}/>)}
+                        </div>
+                        <div>
+                            <label htmlFor="">Bio</label>
+                            <input 
+                                {...register("bio")}
+                                type="textarea" 
+                                className='input input-primary'
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="">Location</label>
+                            <input 
+                                {...register("location")}
+                                type="text"
+                                className='input input-primary' 
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="">Phone Number</label>
+                            <input 
+                                {...register("phone_number")}
+                                type="text"
+                                className='input input-primary' 
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="">Password</label>
+                            <input 
+                                {...register("password",{
+                                    required:"Password Field is required!",
+                                    minLength:{
+                                        value:8,
+                                        message:"Password Must be 8 characters long"
+                                    }
+                                })}
+                                type="password"
+                                className='input input-primary' 
+                            />
+                            {errors.password && (<FieldErrorAlert message={errors.password.message}/>)}
+                        </div>
+                        <div>
+                            <label htmlFor="">Confirm Password</label>
+                            <input
+                                {...register("confirm_password",{
+                                    required:"Confirm Password Field is Required!",
+                                    validate:(value) => value ===watch("password") || "Password Do Not Match",
+                                })} 
+                                type="password" 
+                                className='input input-primary'
+                            />
+                            {errors.confirm_password && (<FieldErrorAlert message={errors.confirm_password.message}/>)}
+                        </div>
+                        <button type='submit' className='btn btn-primary w-full my-2'>Create Account</button>
+                        <div className='flex gap-2 '>
+                            Already Have an account 
+                            <Link to={"/login"}>
+                                <span className='link link-info'>Sign In</span>
+                            </Link>
+                        </div>
+                    </form>
                 </div>
-                <div>
-                    <label htmlFor="">Email</label>
-                    <input 
-                        {...register("email",{
-                            required:"Email Field is Required!"
-                        })}
-                        type="text" 
-                    />
-                    {errors.email && (<FieldErrorAlert message={errors.email.message}/>)}
-                </div>
-                <div>
-                    <label htmlFor="">Bio</label>
-                    <input 
-                        {...register("bio")}
-                        type="textarea" 
-                    />
-                </div>
-                <div>
-                    <label htmlFor="">Location</label>
-                    <input 
-                        {...register("location")}
-                        type="text" 
-                    />
-                </div>
-                <div>
-                    <label htmlFor="">Phone Number</label>
-                    <input 
-                        {...register("phone_number")}
-                        type="number" 
-                    />
-                </div>
-                <div>
-                    <label htmlFor="">Password</label>
-                    <input 
-                        {...register("password",{
-                            required:"Password Field is required!",
-                            minLength:{
-                                value:8,
-                                message:"Password Must be 8 characters long"
-                            }
-                        })}
-                        type="text" 
-                    />
-                    {errors.password && (<FieldErrorAlert message={errors.password.message}/>)}
-                </div>
-                <div>
-                    <label htmlFor="">Confirm Password</label>
-                    <input
-                        {...register("confirm_password",{
-                            required:"Confirm Password Field is Required!",
-                            validate:(value) => value ===watch("password") || "Password Do Not Match",
-                        })} 
-                        type="text" 
-                    />
-                    {errors.confirm_password && (<FieldErrorAlert message={errors.confirm_password.message}/>)}
-                </div>
-                <button type='submit' className='btn btn-primary w-full'>Create Account</button>
-                <div>
-                    Already Have an account <Link to={"/login"}>Sign In</Link>
-                </div>
-            </form>
+            </div>
         </div>
     );
 };

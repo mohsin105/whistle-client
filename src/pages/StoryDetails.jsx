@@ -1,20 +1,26 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router';
+import React, { Suspense, useEffect, useState } from 'react';
+import { Link, useNavigate, useParams } from 'react-router';
 import apiClient from '../services/api-client';
 import CommentSection from '../components/Comments/CommentSection';
 
-import defaultImage from '../assets/default_story.jpg'
+import useAuthContext from '../hooks/useAuthContext';
+import authApiClient from '../services/auth-api-client';
+import StoryImageGallery from '../components/StoryDetails/StoryImageGallery';
 
 const StoryDetails = () => {
     const {storyId}=useParams();
     const [story,setStory]=useState({});
+    const {user} =useAuthContext();
+    const navigate = useNavigate()
     
+    //read
     useEffect(()=>{
         apiClient.get(`/stories/${storyId}`)
         .then((data)=>{
             setStory(data.data);
             console.log(data);
             // console.log(story.author.full_name);
+            // console.log(story.author.id);
         });
         // fetchStory();
     },[storyId]);
@@ -28,6 +34,17 @@ const StoryDetails = () => {
     //         console.log(error);
     //     }
     // };
+
+    //delete
+    const handleStoryDelete = async()=>{
+        try {
+            await authApiClient.delete(`/stories/${storyId}`);
+            alert('Story Deleted!!!');
+            navigate('/');
+        } catch (error) {
+            console.log("Error Deleting Story ", error);
+        }
+    };
     
     return (
         <div>
@@ -47,21 +64,26 @@ const StoryDetails = () => {
                         </div>
                         {/* <button className="btn btn-soft btn-warning">Update Story</button> */}
                         {/* Update Delete Toggle Button  */}
+                        {/* {user?.is_authenticated && user?.id === story.author.id && (
+
+                        )} */}
                         <div className="dropdown dropdown-start">
                             <div tabIndex={0} role="button" className="btn m-1">...</div>
                             <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
-                                <li><a>Edit</a></li>
-                                <li><a>Delete</a></li>
+                                <li><Link to={`/dashboard/stories/${storyId}/update`}>Edit</Link></li>
+                                <li><a onClick={handleStoryDelete}>Delete</a></li>
                             </ul>
                         </div>
                     </div>
                     <p>{story.content}</p>
                 </div>
-                <figure>
-                    <img
-                    src={story.images?.length>0 ? story.images[0].image: defaultImage }
-                    alt="Shoes" />
-                </figure>
+                {story.images?.length>0 && (
+                    <figure>
+                        <Suspense fallback={<div className='aspect-square bg-base-300 animate-pulse rounded-lg'></div>}>
+                            <StoryImageGallery images={story.images}/>
+                        </Suspense>
+                    </figure>
+                )}
                 <div>
                     <CommentSection storyId={storyId}></CommentSection>
                 </div>
