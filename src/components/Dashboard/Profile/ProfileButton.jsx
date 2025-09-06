@@ -9,8 +9,9 @@ const ProfileButton = ({isEditing, isSubmitting, setIsEditing}) => {
                     <button 
                         type='submit'
                         disabled={isSubmitting}
-                        className='btn btn-active px-8'>
-                            {isSubmitting? "Saving": "Save Changes" }
+                        className='btn btn-active px-8'
+                    >
+                        {isSubmitting? "Saving": "Save Changes" }
                     </button>
                     
                     <button
@@ -22,12 +23,12 @@ const ProfileButton = ({isEditing, isSubmitting, setIsEditing}) => {
                 </div>
             ):(
                 <div>
-                    <button 
-                        type='button'
+                    <a 
+                        
                         onClick={()=>setIsEditing(true)} 
                         className='btn btn-neutral px-8'>
                             Edit Profile
-                    </button>
+                    </a>
                 </div>
             )}
             

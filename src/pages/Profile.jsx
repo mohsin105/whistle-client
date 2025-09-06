@@ -26,6 +26,7 @@ const Profile = () => {
                 'phone_number':data.phone_number,
             };
             await updateUserProfile(profilePayLoad);
+            setIsEditing(false);
             // alert("Profile Updated!!!");
         } catch (error) {
             console.log(error);
@@ -43,9 +44,17 @@ const Profile = () => {
                         className='space-y-4 '
                     >
 
-                        <ProfileForm register={register} errors={errors} isEditing={isEditing}/>
+                        <ProfileForm 
+                            register={register} 
+                            errors={errors} 
+                            isEditing={isEditing}
+                        />
 
-                        <ProfileButton isEditing={isEditing} isSubmitting={isSubmitting} setIsEditing={setIsEditing}/>
+                        <ProfileButton 
+                            isEditing={isEditing} 
+                            isSubmitting={isSubmitting} 
+                            setIsEditing={setIsEditing}
+                        />
                     </form>
                 </div>
             </div>

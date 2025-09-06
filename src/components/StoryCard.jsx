@@ -1,6 +1,7 @@
 // import React, { useEffect } from 'react';
 import { NavLink } from 'react-router';
 import defaultImage from '../assets/default_story.jpg'
+import { AiTwotoneLike } from "react-icons/ai";
 
 const StoryCard = ({story}) => {
     // useEffect(()=>{
@@ -22,8 +23,9 @@ const StoryCard = ({story}) => {
                         
                     </figure>
                     <div className='flex justify-between mx-4 my-2'>
-                        <div>
-                            <p>{story.like_count}</p>
+                        <div className='flex gap-2'>
+                            <AiTwotoneLike />
+                            <span>{story.like_count}</span>
                         </div>
                         <div>
                             <span className='mr-2'>{story.comment_count}</span>

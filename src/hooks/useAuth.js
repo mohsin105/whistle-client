@@ -87,7 +87,7 @@ const useAuth = () => {
     const updateUserProfile = async(userData) => {
         setErrorMessage("");
         try {
-            await authApiClient.put("/auth/users/me/", userData);
+            await authApiClient.patch("/auth/users/me/", userData);
         } catch (error) {
             handleApiError(error);
         }

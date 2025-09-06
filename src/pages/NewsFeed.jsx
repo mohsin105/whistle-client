@@ -18,12 +18,12 @@ const NewsFeed = () => {
     // const [filterQuery, setFilterQuery] = useState("");
     useEffect(()=>{
         fetchStories();
-    },[currentPage]);
+    },[currentPage, searchQuery,sortOrder]);
     
     const fetchStories = async()=>{
         setLoading(true);
         try {
-            const response = await apiClient.get(`/stories/?page=${currentPage}`);
+            const response = await apiClient.get(`/stories/?ordering=${sortOrder}&search=${searchQuery}&page=${currentPage}`);
             const actualData = response.data;
             setStories(actualData.results);
             console.log(actualData);

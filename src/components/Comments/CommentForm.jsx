@@ -6,7 +6,7 @@ const CommentForm = ({onSubmit}) => {
     const {register, handleSubmit, formState:{errors, isSubmitting}} = useForm();
     return (
         <div>
-            Create a new Comment
+           
             <form 
                 onSubmit={handleSubmit(onSubmit)}
                 className='bg-gray-200'>

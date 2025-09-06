@@ -39,18 +39,18 @@ const ProfileForm = ({register, errors, isEditing}) => {
                 <label >Bio</label>
                 <input
                     {...register('bio')} 
-                    type="text"
+                    type="textarea"
                     disabled={!isEditing}
-                    className='' 
+                    className='textarea input input-primary' 
                 />
             </div>
             <div>
                 <label >Location</label>
                 <input
                     {...register("location")} 
-                    type="text"
+                    type="textarea"
                     disabled={!isEditing}
-                    className='input input-primary' 
+                    className='textarea input input-primary' 
                 />
             </div>
             <div>

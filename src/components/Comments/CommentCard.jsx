@@ -15,19 +15,21 @@ const CommentCard = ({comment,user,isEditing,editingId, editComment,setEditComme
                         <h2 className="card-title">{comment.author.full_name}</h2>
                         <p className='text-md'>{comment.content}</p>
                         <div className="justify-end card-actions">
-                            {user && user.id === comment.author.id }
-                            <div className='flex gap-2'>
-                                <button
-                                    onClick={onEditClick} 
-                                    className="btn btn-primary px-4">
-                                        Edit
-                                </button>
-                                <button 
-                                    onClick={onDeleteClick}
-                                    className='btn btn-warning px-2'>
-                                        Delete
-                                </button>
-                            </div>
+                            {user && user.id === comment.author.id &&(
+
+                                <div className='flex gap-2'>
+                                    <button
+                                        onClick={onEditClick} 
+                                        className="btn btn-primary px-4">
+                                            Edit
+                                    </button>
+                                    <button 
+                                        onClick={onDeleteClick}
+                                        className='btn btn-warning px-2'>
+                                            Delete
+                                    </button>
+                                </div>
+                            )}
                         </div>
                     </div>
                 </div>
