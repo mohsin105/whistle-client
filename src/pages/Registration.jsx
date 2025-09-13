@@ -24,24 +24,25 @@ const Registration = () => {
         }
     }
     return (
-        <div className='w-5/6 mx-auto p-4'>
+        <div className='w-5/6 mx-auto p-4 bg-gray-50'>
             <div className='card'>
-                <div className='text-4xl font-bold text-center'>Register Here</div>
+                <div className='text-4xl font-bold text-center my-2'>Register Here</div>
                 <div>
                     {errorMessage && <ErrorAlert errorMessage={errorMessage}/>}
                     {successMessage && <SuccessAlert successMessage={successMessage}/>}
                 </div>
-                <div className='flex justify-center'>
+                <div className=' flex justify-center'>
 
                     <form 
                         onSubmit={handleSubmit(onSubmit)}
-                        className=''>
+                        className='space-y-2  bg-gray-100 shadow-xl rounded-lg p-8'>
                         <div>
                             <label htmlFor="">First Name</label>
                             <input 
                                 {...register("first_name")}
                                 type="text"
-                                className='input' 
+                                className='input'
+                                placeholder='Your First Name' 
                             />
                         </div>
                         <div>
@@ -50,6 +51,7 @@ const Registration = () => {
                                 {...register("last_name")}
                                 type="text"
                                 className='input input-primary' 
+                                placeholder='Your Last Name' 
                             />
                         </div>
                         <div>
@@ -60,6 +62,7 @@ const Registration = () => {
                                 })}
                                 type="text" 
                                 className='input input-primary'
+                                placeholder='email' 
                             />
                             {errors.email && (<FieldErrorAlert message={errors.email.message}/>)}
                         </div>
@@ -69,6 +72,7 @@ const Registration = () => {
                                 {...register("bio")}
                                 type="textarea" 
                                 className='input input-primary'
+                                placeholder='Enter your Bio' 
                             />
                         </div>
                         <div>
@@ -76,7 +80,8 @@ const Registration = () => {
                             <input 
                                 {...register("location")}
                                 type="text"
-                                className='input input-primary' 
+                                className='input input-primary'
+                                placeholder='Location'  
                             />
                         </div>
                         <div>
@@ -84,7 +89,8 @@ const Registration = () => {
                             <input 
                                 {...register("phone_number")}
                                 type="text"
-                                className='input input-primary' 
+                                className='input input-primary'
+                                placeholder='Phone Number'  
                             />
                         </div>
                         <div>
@@ -98,7 +104,8 @@ const Registration = () => {
                                     }
                                 })}
                                 type="password"
-                                className='input input-primary' 
+                                className='input input-primary'
+                                placeholder='Password'  
                             />
                             {errors.password && (<FieldErrorAlert message={errors.password.message}/>)}
                         </div>
@@ -111,6 +118,7 @@ const Registration = () => {
                                 })} 
                                 type="password" 
                                 className='input input-primary'
+                                placeholder='Confirm Password' 
                             />
                             {errors.confirm_password && (<FieldErrorAlert message={errors.confirm_password.message}/>)}
                         </div>

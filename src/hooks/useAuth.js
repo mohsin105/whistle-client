@@ -25,6 +25,7 @@ const useAuth = () => {
     };
     
     useEffect(()=>{
+        // console.log(authToken);
         if(authToken)fetchCurrentUser();
     },[authToken]);
     
