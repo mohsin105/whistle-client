@@ -14,13 +14,15 @@ import UpdateStory from '../pages/UpdateStory';
 import Dashboard from '../components/Dashboard/Dashboard';
 import PaymentSuccess from '../pages/PaymentSuccess';
 import Packages from '../pages/Packages';
+import Home from '../pages/Home';
 
 
 const AppRoutes = () => {
     return (
         <Routes>
             <Route element={<MainLayout/>}>
-                <Route index element={<NewsFeed/>}></Route>
+                <Route index element={<Home/>}></Route>
+                <Route path='newsfeed' element={<NewsFeed/>}></Route>
                 <Route path='/:storyId' element={<StoryDetails/>}></Route>
                 <Route path="register" element={<Registration/>}></Route>
                 <Route path="login" element={<Login/>}></Route>

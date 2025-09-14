@@ -5,18 +5,19 @@ import { Link } from 'react-router';
 const Navbar = () => {
     const {user, logoutUser} = useAuthContext();
     return (
-        <div className="navbar bg-base-100 shadow-sm">
+        <div className="navbar bg-base-100 shadow-2xl">
             <div className="flex-1">
-                <Link to={'/'} className="btn btn-ghost text-xl">Whistle</Link>
+                <Link to={'/newsfeed'} className="btn btn-ghost text-xl">Whistle</Link>
             </div>
             <div className="flex gap-2">
-                <input type="text" placeholder="Search" className="input input-bordered w-24 md:w-auto" />
+                {/* <input type="text" placeholder="Search" className="input input-bordered w-24 md:w-auto" /> */}
                 <div className="dropdown dropdown-end">
                     <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                         <div className="w-10 rounded-full">
                         <img
                             alt="Tailwind CSS Navbar component"
-                            src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                            // src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+                            src={user?.profile_image} />
                         </div>
                     </div>
                     <ul

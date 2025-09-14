@@ -20,7 +20,11 @@ const StoryDetails = () => {
         apiClient.get(`/stories/${storyId}`)
         .then((data)=>{
             setStory(data.data);
-            console.log(data);
+            console.log(data.data);
+            if(data.data.is_liked==true)
+            {
+                setIsLiked(true);
+            }
             // console.log(story.author.full_name);
             // console.log(story.author.id);
         });
@@ -109,7 +113,7 @@ const StoryDetails = () => {
                 <div>
                     <a onClick={handleLike}>
                         <AiTwotoneLike 
-                            className={`text-xl ${isLiked? 'text-violet-800' : ''} `}/>
+                            className={`text-4xl ${isLiked? 'text-black' : 'text-violet-50'} `}/>
                     </a>
                 </div>
                 <div>
