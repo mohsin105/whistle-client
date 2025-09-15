@@ -1,6 +1,6 @@
 import React, { Suspense, useEffect, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router';
-import { AiTwotoneLike } from "react-icons/ai";
+import { AiFillLike, AiTwotoneLike } from "react-icons/ai";
 import apiClient from '../services/api-client';
 import CommentSection from '../components/Comments/CommentSection';
 
@@ -17,7 +17,7 @@ const StoryDetails = () => {
     // console.log(user.id);
     //read
     useEffect(()=>{
-        apiClient.get(`/stories/${storyId}`)
+        authApiClient.get(`/stories/${storyId}`)
         .then((data)=>{
             setStory(data.data);
             console.log(data.data);
@@ -68,60 +68,63 @@ const StoryDetails = () => {
     };
     
     return (
-        <div>
-            Story Details:
-            {/* <h3>{story.author.first_name}</h3>
-            <h2></h2> 
-            <p></p> */}
-            
-            <div className='w-1/2 mx-auto flex justify-center'>
+       
+        <div className='w-full md:w-3/4 mx-auto my-4 flex justify-center'>
 
             <div className="card bg-base-100 w-3/4 shadow-sm">
-                <div className="card-body">
-                    <div className='flex justify-between'>
-                        <div>
-                            <p>{story.author?.full_name}</p>
-                            <h2 className="card-title">{story.title}</h2>
-                        </div>
-                        
-                        {/* Update Delete Toggle Button  */}
-                        <Suspense fallback={<div className='aspect-square bg-base-300 animate-pulse rounded-lg'></div>}>
-
-                            {user?.id === story.author?.id && (
-
-                                <div className="dropdown dropdown-start">
-                                    <div tabIndex={0} role="button" className="btn m-1">...</div>
-                                    <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
-                                        <li><Link to={`/dashboard/stories/${storyId}/update`}>Edit</Link></li>
-                                        <li><a onClick={handleStoryDelete}>Delete</a></li>
-                                    </ul>
-                                </div>
-                            )}
-                        </Suspense>
-                    </div>
-                    <p>{story.content}</p>
-                </div>
                 <div>
-                    {story.images?.length>0 && (
-                        <figure>
+                    <div className="card-body bg-[#C1E8FF] rounded-t-md">
+                        <div className='flex justify-between'>
+                            <div>
+                                <p className='font-bold'>{story.author?.full_name}</p>
+                                <h2 className="card-title drop-shadow-2xl">{story.title}</h2>
+                            </div>
+                            
+                            {/* Update Delete Toggle Button  */}
                             <Suspense fallback={<div className='aspect-square bg-base-300 animate-pulse rounded-lg'></div>}>
-                                <StoryImageGallery images={story.images}/>
+
+                                {user?.id === story.author?.id && (
+
+                                    <div className="dropdown dropdown-end">
+                                        <div tabIndex={0} role="button" className="btn m-1">...</div>
+                                        <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-1 w-52 p-2 shadow-sm">
+                                            <li><Link to={`/dashboard/stories/${storyId}/update`}>Edit</Link></li>
+                                            <li><a onClick={handleStoryDelete}>Delete</a></li>
+                                        </ul>
+                                    </div>
+                                )}
                             </Suspense>
-                        </figure>
-                    )}
+                        </div>
+                        <p className=' text-md drop-shadow-2xl'>{story.content}</p>
+                        <div>
+                            {story.images?.length>0 && (
+                                <figure>
+                                    <Suspense fallback={<div className='aspect-square bg-base-300 animate-pulse rounded-lg'></div>}>
+                                        <StoryImageGallery images={story.images}/>
+                                    </Suspense>
+                                </figure>
+                            )}
+                        </div>
+                    </div>
                 </div>
-                <div>
-                    <a onClick={handleLike}>
-                        <AiTwotoneLike 
-                            className={`text-4xl ${isLiked? 'text-black' : 'text-violet-50'} `}/>
-                    </a>
+                <div className='flex justify-between items-center bg-[#B3CFE5] p-4'>
+                    <div className='flex items-center gap-2'>
+                        <a onClick={handleLike}>
+                            {isLiked? <AiFillLike className='text-4xl'/>:<AiTwotoneLike className='text-4xl'/>}
+                            
+                                
+                        </a>
+                        <span>{story.like_count}</span>
+                    </div>
+                    <div>
+                        <span className='mr-2'>{story.comment_count || 0}</span>
+                        <span>comments</span>
+                    </div>
                 </div>
-                <div>
+                <div className='bg-[#B3CFE5] p-2'>
                     <CommentSection storyId={storyId}></CommentSection>
                 </div>
             </div>
-            </div>
-            
         </div>
     );
 };

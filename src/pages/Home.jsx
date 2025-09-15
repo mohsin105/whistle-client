@@ -7,9 +7,12 @@ const Home = () => {
     return (
         <div>
             <HeroArea/>
-            <h2>What you'll have</h2>
-            <FeatureCards/>
             <HomeCarousel/>
+
+            
+            <FeatureCards/>
+            
+
             <section className='w-5/6 mx-auto my-4 bg-blue-500 text-center flex justify-center items-center text-white p-6 rounded-lg shadow-blue-200  '>
                 <p className='text-2xl font-semibold'> See what others whistle. </p>
                     <Link 
@@ -18,6 +21,7 @@ const Home = () => {
                             Explore Whistle
                     </Link>
             </section>
+
             <section className='w-5/6 mx-auto my-4 bg-violet-500 flex justify-center items-center rounded-lg  p-6 gap-4'>
                 <p className='text-2xl font-semibold'>Ready to whistle your story? </p>
                 <Link

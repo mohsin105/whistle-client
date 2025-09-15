@@ -3,14 +3,15 @@ import React from 'react';
 const EditCommentForm = ({editComment,setEditComment,onCancel, onSave}) => {
     return (
         <div>
-            Edit Comment Form
-            <div>
+            
+            <div className='bg-gray-200 rounded-md p-2 my-2'>
                 <label htmlFor="">Update Comment</label>
                 <textarea 
                     value={editComment.content}
-                    onChange={e=> setEditComment({...editComment,content:e.target.value})}/>
+                    onChange={e=> setEditComment({...editComment,content:e.target.value})}
+                    className='w-full border rounded-md p-2 my-2'/>
             </div>
-            <div>
+            <div className='flex justify-end space-x-2'>
 
                 <button 
                     onClick={onSave}
@@ -19,7 +20,7 @@ const EditCommentForm = ({editComment,setEditComment,onCancel, onSave}) => {
                 </button>
                 <button
                     onClick={onCancel}
-                    className='btn btn-warning px-4'>
+                    className='btn btn-error px-4'>
                         Cancel
                 </button>
             </div>

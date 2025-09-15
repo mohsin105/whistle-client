@@ -61,7 +61,7 @@ const CommentSection = ({storyId}) => {
         }
     };
     return (
-        <div>
+        <div >
             <div>
                 {loading? (
                     <div className="flex justify-center py-8">
@@ -72,22 +72,27 @@ const CommentSection = ({storyId}) => {
                         No Comment yet. Be the first to comment!!!
                     </div>
                 ):(
-
-                    <CommentList 
-                        comments={comments}
-                        user={user}
-                        editingId={editingId}
-                        setEditingId={setEditingId}
-                        editComment={editComment}
-                        setEditComment={setEditComment}
-                        handleUpdateComment={handleUpdateComment}
-                        handleDeleteComment={handleDeleteComment}>
-                    </CommentList>
+                    <div>
+                        <p className='font-semibold'>All Comments</p>
+                        <CommentList 
+                            comments={comments}
+                            user={user}
+                            editingId={editingId}
+                            setEditingId={setEditingId}
+                            editComment={editComment}
+                            setEditComment={setEditComment}
+                            handleUpdateComment={handleUpdateComment}
+                            handleDeleteComment={handleDeleteComment}>
+                        </CommentList>
+                    </div>
                 )}
             </div>
-            <div>
-                <CommentForm onSubmit={onSubmit}/>
-            </div>
+            {user && (
+
+                <div className='p-4'>
+                    <CommentForm onSubmit={onSubmit}/>
+                </div>
+            )}
         </div>
     );
 };

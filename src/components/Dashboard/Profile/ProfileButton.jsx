@@ -5,7 +5,7 @@ const ProfileButton = ({isEditing, isSubmitting, setIsEditing}) => {
     return (
         <div>
             {isEditing? (
-                <div>
+                <div className='flex gap-4'>
                     <button 
                         type='submit'
                         disabled={isSubmitting}

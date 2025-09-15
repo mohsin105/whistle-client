@@ -17,7 +17,7 @@ const Login = () => {
         try {
             const response = await loginUser(data);
             console.log(response);
-            if (response.success) navigate("/");
+            if (response.success) navigate("/newsfeed");
         } catch (error) {
             console.log("Login Error ",error);
         }finally{

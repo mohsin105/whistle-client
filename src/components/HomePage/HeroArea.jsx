@@ -6,7 +6,7 @@ const HeroArea = () => {
         <div className=' relative'>
 
             <section 
-                className='flex'
+                className='flex flex-col md:flex-row'
                 style={{ backgroundImage: `url(${heroBg})`, backgroundSize: 'cover', backgroundPosition: 'center' }}>
                 <div className="absolute inset-0 bg-black opacity-20"></div>
                 
@@ -16,7 +16,7 @@ const HeroArea = () => {
                     <h3 className='text-3xl drop-shadow-2xl'>Stay Connected. Share Moments. Whistle</h3>
                 </div>
                 {/* Image */}
-                <div className='basis-1/2 z-20'>
+                <div className='basis-1/2 z-10'>
                     <div className='absolute inset-0 bg-gradient-to-l from-transparent to-black' style={{ opacity: 0.3 }}></div>
                     <img src={heroImage} alt="" />
                 </div>

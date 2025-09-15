@@ -5,16 +5,17 @@ import ProfileButton from '../components/Dashboard/Profile/ProfileButton';
 import useAuthContext from '../hooks/useAuthContext';
 import { Link, useNavigate } from 'react-router';
 import ProfileImages from '../components/Dashboard/Profile/ProfileImages';
+import PasswordChangeForm from '../components/Dashboard/Profile/PasswordChangeForm';
 
 const Profile = () => {
-    const {register, handleSubmit, setValue, formState:{errors, isSubmitting}} = useForm();
+    const {register, handleSubmit, setValue, watch,formState:{errors, isSubmitting}} = useForm();
     const [isEditing, setIsEditing] = useState(false);
-    const {user,updateUserProfile } = useAuthContext();
+    const {user,updateUserProfile,changePassword } = useAuthContext();
     const [loading, setLoading] = useState(false);
     const [images, setImages] = useState([]);
     const [isProfileImageEditing, setIsProfileImageEditing]= useState(false);
     const [isCoverPhotoEditing, setIsCoverPhotoEditing]= useState(false);
-    const navigate= useNavigate();
+    // const navigate= useNavigate();
     
     useEffect(()=>{
         if(user){
@@ -33,6 +34,12 @@ const Profile = () => {
                 'phone_number':data.phone_number,
             };
             await updateUserProfile(profilePayLoad);
+
+            //password change
+			if(data.current_password && data.new_password){
+				await changePassword({current_password:data.current_password, 
+				new_password: data.new_password});
+			}
             setIsEditing(false);
             // alert("Profile Updated!!!");
         } catch (error) {
@@ -77,13 +84,13 @@ const Profile = () => {
                 user={user}
                 setIsCoverPhotoEditing={setIsCoverPhotoEditing}
                 setIsProfileImageEditing={setIsProfileImageEditing}/>
-            <h1>Profile Information</h1>
-            <div className='card card-body w-2/3 mx-auto'>
+            <h1 className='text-4xl font-bold text-center'>Profile Information</h1>
+            <div className='card card-body w-2/3 mx-auto '>
                 <div className='flex justify-center'>
 
                     <form 
                         onSubmit={handleSubmit(onSubmit)}
-                        className='space-y-4 '
+                        className='space-y-4  w-full md:w-1/2'
                     >
 
                         <ProfileForm 
@@ -91,7 +98,14 @@ const Profile = () => {
                             errors={errors} 
                             isEditing={isEditing}
                         />
+                        {isEditing && (
 
+                            <PasswordChangeForm 
+                                register={register} 
+                                isEditing={isEditing} 
+                                watch={watch} 
+                                errors={errors}/>
+                        )}
                         <ProfileButton 
                             isEditing={isEditing} 
                             isSubmitting={isSubmitting} 
@@ -100,15 +114,7 @@ const Profile = () => {
                     </form>
                 </div>
             </div>
-            <div>
-                <Link
-                    className='btn btn-active px-8'
-                    // onClick={handlePayment}
-                    // disabled={loading}
-                    to={'/dashboard/packages/'}>
-                    Be a premium member
-                </Link>
-            </div>
+            
         </div>
     );
 };

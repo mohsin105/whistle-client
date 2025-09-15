@@ -37,17 +37,19 @@ const UpdateStory = () => {
 
     // const handleUploadNewImage = () =>{};
     return (
-        <div className='w-3/5 mx-auto'>
+        <div className='w-full sm:w-2/3 mx-auto  bg-gray-100 rounded p-8'>
 
-            <p className='text-center'>This is Story Update Page</p>
+            <p className='text-center text-3xl font-bold my-4'>
+                Update Your Story
+            </p>
             <div className='card card-body '>
                 <div className='flex justify-center'>
 
                     <form 
                         onSubmit={handleSubmit(handleStoryUpdate)}
-                        className='space-y-2 w-full text-center'
+                        className='space-y-2 w-full md:w-3/5 bg-gray-50 text-center p-4 rounded-lg shadow-sm'
                     >
-                        <div className='space-x-2'>
+                        <div className='space-x-2 flex flex-col md:flex-row justify-between'>
                             <label htmlFor="">Title</label>
                             <input 
                                 {...register('title',{
@@ -58,13 +60,14 @@ const UpdateStory = () => {
                             />
                             {errors.title && (<FieldErrorAlert message={errors.title.message}/>)}
                         </div>
-                        <div className='space-x-2'>
+                        <div className='space-x-2 flex flex-col md:flex-row justify-between'>
                             <label htmlFor="">Content</label>
-                            <input 
+                            <textarea 
                                 {...register("content",{
                                     required:"Content cannot be empty"
                                 })}
                                 type="textarea"
+                                rows={10}
                                 className='textarea' 
                             />
                             {errors.content && (<FieldErrorAlert message={errors.content.message}/>)}

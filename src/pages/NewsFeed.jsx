@@ -38,9 +38,8 @@ const NewsFeed = () => {
     };
     
     return (
-        <div className='w-1/2 mx-auto text-center'>
-            This is NewsFeed
-            <div>
+        <div className='w-5/6   mx-auto p-4 text-center flex flex-col md:flex-row-reverse gap-4'>
+            <div className='basis-1/3'>
                 <FilterSection
                       searchQuery={searchQuery}
                       sortOrder={sortOrder}  
@@ -48,29 +47,31 @@ const NewsFeed = () => {
                       handleSorting={setSortOrder}
                 />
             </div>
-            <div className='flex justify-center'>
-                <div className="card w-3/4 bg-base-100 card-sm shadow-sm">
-                    <div className="card-body">
-                        <h2 className="card-title">Share Your Story</h2>
-                        <p>Let your whistle reach others</p>
-                        <div className="justify-end card-actions">
-                        <NavLink to={'/dashboard/stories/add'}>
-                            <button className="btn btn-primary">Create Story</button>
-                        </NavLink>
+            <div className='md:border-r-1'>
+                <div className='flex justify-center mt-8'>
+                    <div className="card w-3/4 bg-base-100 card-sm shadow-sm">
+                        <div className="card-body">
+                            <h2 className="card-title">Share Your Story</h2>
+                            <p>Let your whistle reach others</p>
+                            <div className="justify-end card-actions">
+                            <NavLink to={'/dashboard/stories/add'}>
+                                <button className="btn btn-primary">Create Story</button>
+                            </NavLink>
 
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div>
-                <StoryList stories={stories} loading={loading} />
-            </div>
-            <div className='mt-4'>
-                <Pagination
-                    currentPage={currentPage}
-                    handlePageChange={setCurrentPage}
-                    totalPages={totalPages}
-                />
+                <div>
+                    <StoryList stories={stories} loading={loading} />
+                </div>
+                <div className='mt-4'>
+                    <Pagination
+                        currentPage={currentPage}
+                        handlePageChange={setCurrentPage}
+                        totalPages={totalPages}
+                    />
+                </div>
             </div>
             
         </div>
