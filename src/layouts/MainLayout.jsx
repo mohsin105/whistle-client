@@ -16,10 +16,10 @@ const MainLayout = () => {
                     {/* Page content here */}
                     <div className='flex  sticky items-center top-0 z-40'>
                         <label htmlFor="my-drawer-2" className="btn  drawer-button lg:hidden  w-fit  ">
-                            <div class="space-y-1">
-                                <div class="w-6 h-1 bg-gray-600 rounded"></div>
-                                <div class="w-6 h-1 bg-gray-600 rounded"></div>
-                                <div class="w-6 h-1 bg-gray-600 rounded"></div>
+                            <div className="space-y-1">
+                                <div className="w-6 h-1 bg-gray-600 rounded"></div>
+                                <div className="w-6 h-1 bg-gray-600 rounded"></div>
+                                <div className="w-6 h-1 bg-gray-600 rounded"></div>
                             </div>
                         </label>
                         {user? <Navbar/> : <NavBar/>}

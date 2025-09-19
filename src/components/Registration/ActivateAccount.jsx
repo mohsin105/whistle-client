@@ -19,12 +19,13 @@ const ActivateAccount = () => {
         .catch((error)=>{
             console.log(error);
             setErrorMessage("Something Went Wrong. Please check your activation link");
+            // JSON.stringify(error)
         })
     },[]);
     
     return (
-        <div>
-            <h2>Activate Account</h2>
+        <div className='flex flex-col justify-center space-y-8 border p-4'>
+            <h2 className='text-3xl'>Activate Account</h2>
             <div>
                 {message && (<SuccessAlert successMessage={message}/>)}
             </div>

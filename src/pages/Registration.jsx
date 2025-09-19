@@ -9,14 +9,17 @@ import { Link } from 'react-router';
 const Registration = () => {
     const {register, handleSubmit, formState:{errors}, watch} = useForm();
     const {registerUser, errorMessage} = useAuthContext();
-    const {successMessage, setSuccessMessage} = useState("");
+    const [successMessage, setSuccessMessage] = useState("");
     
     const onSubmit= async(data) => {
         delete data.confirm_password;
+        console.log("REgsitration form submitted!");
         try {
             const response = await registerUser(data);
+            console.log("Api call done",response);
             if(response.success)
             {
+                console.log("submission successful");
                 setSuccessMessage(response.message);
             }
         } catch (error) {
